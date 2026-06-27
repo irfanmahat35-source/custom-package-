@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow More | Custom Media Solutions Architecture</title>
+    <!-- Google Fonts for Apple-Spec Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Verified Stable FontAwesome 6.5.1 CDN Link for Perfect Icon Rendering -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- BRAND THEME & STRICT MATHEMATICAL GOLDEN RATIO (1 : 1.618) DESIGN SYSTEM --- */
+        :root {
+            --bg-color: #000000;              /* Jet Black Canvas */
+            
+            /* TRUE INTERACTIVE GLASSMORPHISM WITH HIGH CONTRAST MATTE BLUR */
+            --apple-glass-bg: rgba(255, 255, 255, 0.04); 
+            --apple-glass-border: rgba(255, 255, 255, 0.14); /* Crisp glass edge line */
+            --apple-glass-hover-border: rgba(255, 255, 255, 0.42);
+            
+            --text-main: #ffffff;
+            --text-muted: #86868b;            /* Official Apple Gray */
+            
+            /* Golden Ratio Proportional Spacing Scales */
+            --g-xs: 8px;
+            --g-sm: 13px;
+            --g-md: 21px;
+            --g-lg: 34px;
+            --g-xl: 55px;
+            --g-xxl: 89px;
+            --g-hero: 144px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.618;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+        
+        /* --- IMMERSIVE BACKGROUND GLOW ORBS FOR REAL GLASS TRANSLUCENCY --- */
+        .ambient-glow-1 {
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            top: 45%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ambient-glow-3 {
+            position: absolute;
+            bottom: 5%;
+            left: 20%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: var(--g-sm) 8%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid var(--apple-glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            width: 150px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            cursor: pointer;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-left: var(--g-lg);
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        .page-view {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-view.active-view {
+            display: block;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding: var(--g-hero) 8% var(--g-xl) 8%;
+            text-align: center;
+        }
+
+        .badge {
+            background: var(--apple-glass-bg);
+            border: 1px solid var(--apple-glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: var(--g-xs) var(--g-md);
+            border-radius: 100px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            display: inline-block;
+            margin-bottom: var(--g-lg);
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: var(--g-xl); 
+            font-weight: 800;
+            letter-spacing: -2.5px;
+            line-height: 1.15;
+            margin-bottom: var(--g-md);
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto var(--g-lg) auto;
+        }
+
+        /* --- ABOUT --- */
+        .about-section {
+            padding: var(--g-lg) 8% var(--g-xxl) 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--g-lg);
+        }
+
+        .about-box {
+            background: var(--apple-glass-bg);
+            border: 1px solid var(--apple-glass-border);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            padding: var(--g-lg);
+            border-radius: 24px;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+        }
+
+        .about-box h2 {
+            font-size: 26px;
+            margin-bottom: var(--g-md);
+            letter-spacing: -0.75px;
+            font-weight: 700;
+        }
+
+        .about-box p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .about-box ul {
+            list-style: none;
+        }
+
+        .about-box ul li {
+            color: var(--text-muted);
+            margin-bottom: var(--g-sm);
+            font-size: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--g-sm);
+        }
+
+        .about-box ul li i {
+            color: var(--text-main);
+            margin-top: 5px;
+        }
+
+        /* --- SOLUTIONS --- */
+        .packages-container {
+            padding: var(--g-xxl) 8%;
+            border-top: 1px solid var(--apple-glass-border);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--g-xxl);
+        }
+
+        .section-title h2 {
+            font-size: var(--g-lg);
+            letter-spacing: -1.5px;
+            margin-bottom: var(--g-sm);
+            font-weight: 800;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--g-lg);
+        }
+
+        .package-card {
+            background: var(--apple-glass-bg);
+            border: 1px solid var(--apple-glass-border);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 24px;
+            padding: var(--g-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12), 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--apple-glass-hover-border);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 var(--g-md) var(--g-xxl) rgba(0, 0, 0, 0.8);
+        }
+
+        .icon-box {
+            width: var(--g-xl);
+            height: var(--g-xl);
+            border-radius: var(--g-sm);
+            background: rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--g-md);
+            font-size: 22px;
+            color: var(--text-main);
+            border: 1px solid var(--apple-glass-border);
+        }
+
+        .package-card h3 {
+            font-size: 24px;
+            margin-bottom: var(--g-sm);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .card-view-details-btn {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: var(--g-sm);
+        }
+
+        /* --- DYNAMIC DETAILS VIEW --- */
+        .detail-view-container {
+            padding: var(--g-hero) 8% var(--g-xxl) 8%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--g-sm);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--g-lg);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--text-main);
+        }
+
+        .detail-glass-card {
+            background: var(--apple-glass-bg);
+            border: 1px solid var(--apple-glass-border);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 32px;
+            padding: var(--g-xl);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15), 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: var(--g-md);
+            margin-bottom: var(--g-lg);
+        }
+
+        .detail-header .icon-box {
+            margin-bottom: 0;
+        }
+
+        .detail-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+        }
+
+        .detail-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: var(--g-xl);
+            line-height: 1.7;
+        }
+
+        .value-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--g-md);
+            margin-bottom: var(--g-xl);
+        }
+
+        .pillar-box {
+            background: var(--apple-glass-bg);
+            border: 1px solid var(--apple-glass-border);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            padding: var(--g-lg);
+            border-radius: 24px;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+        }
+
+        .pillar-box h4 {
+            font-size: 17px;
+            margin-bottom: var(--g-xs);
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pillar-box h4 i {
+            color: #3b82f6;
+        }
+
+        .pillar-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .detail-section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--g-sm);
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            border-left: 3px solid #ffffff;
+            padding-left: 10px;
+        }
+
+        .plan-box-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--g-md);
+            margin-bottom: var(--g-xl);
+        }
+
+        .plan-tier-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: var(--g-md);
+            border-radius: 16px;
+        }
+
+        .plan-tier-card h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #ffffff;
+            letter-spacing: -0.2px;
+        }
+
+        .detailed-strategy-list {
+            list-style: none;
+        }
+
+        .detailed-strategy-list li {
+            font-size: 15px;
+            color: var(--text-main);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--g-sm);
+        }
+
+        .detailed-strategy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .detailed-strategy-list li i {
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        /* --- CUSTOM CONFIGURATOR WORKSPACE --- */
+        .configurator-area {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--apple-glass-border);
+            border-radius: 24px;
+            padding: var(--g-lg);
+            margin-top: var(--g-lg);
+        }
+
+        .config-group {
+            margin-bottom: var(--g-md);
+        }
+
+        .config-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+            margin-bottom: var(--g-xs);
+            display: block;
+        }
+
+        .config-input, .config-select, .config-textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: var(--g-sm);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .config-input:focus, .config-select:focus, .config-textarea:focus {
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .custom-setup-fields {
+            display: none;
+            flex-direction: column;
+            gap: var(--g-md);
+            margin-top: var(--g-md);
+            border-top: 1px dashed rgba(255,255,255,0.1);
+            padding-top: var(--g-md);
+        }
+
+        .custom-quantity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--g-md);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input {
+            cursor: pointer;
+        }
+
+        .deploy-button {
+            display: block;
+            text-align: center;
+            padding: 18px;
+            background: var(--text-main);
+            color: #000000;
+            text-decoration: none;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+            margin-top: var(--g-lg);
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .deploy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.35);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            position: relative;
+            z-index: 2;
+            background: #000000;
+            border-top: 1px solid var(--apple-glass-border);
+            padding: var(--g-xl) 8% var(--g-lg) 8%;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--g-md);
+            text-align: center;
+            margin-bottom: var(--g-lg);
+        }
+
+        .footer-brand-logo {
+            height: 120px; 
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--g-md);
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--apple-glass-bg);
+            border: 1px solid var(--apple-glass-border);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--text-main);
+            border-color: var(--apple-glass-hover-border);
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--apple-glass-border);
+            padding-top: var(--g-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            header { padding: var(--g-sm) 5%; }
+            nav { display: none; } 
+            h1 { font-size: 34px; letter-spacing: -1px; }
+            .hero { padding-top: var(--g-hero); padding-bottom: var(--g-xl); }
+            .about-section { grid-template-columns: 1fr; padding: var(--g-lg) 5%; gap: var(--g-md); }
+            .packages-container { padding: var(--g-lg) 5%; }
+            .detail-header h2 { font-size: 28px; }
+            .detail-glass-card { padding: var(--g-lg); }
+            .footer-bottom { flex-direction: column; gap: var(--g-sm); text-align: center; }
+            .custom-quantity-grid { grid-template-columns: 1fr; gap: var(--g-sm); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Grow More Logo" class="header-logo" onclick="showView('home-view')">
+        </div>
+        <nav>
+            <a href="#home" onclick="showView('home-view')">Overview</a>
+            <a href="#about" onclick="showView('home-view')">Agency</a>
+            <a href="#packages" onclick="showView('home-view')">Services</a>
+        </nav>
+    </header>
+
+    <!-- MAIN HOME LANDING VIEW -->
+    <div id="home-view" class="page-view active-view">
+        <section class="hero" id="home">
+            <div class="badge">Next-Gen Digital Media House</div>
+            <h1>We Transform Local Businesses<br>Into Global Brands.</h1>
+            <p>Engineered for massive corporate expansion. We weaponize high-end cinematic production, advanced social media infrastructure, and target-focused advertising campaigns to instantly scale your market dominance.</p>
+        </section>
+
+        <section class="about-section" id="about">
+            <div class="about-box">
+                <h2>What is Grow More?</h2>
+                <p>Grow More is a premium, results-driven digital advertising and media intelligence agency. We merge high-fidelity cinematic video production, data-centric social architecture, and flawless scripting execution to manage your complete digital evolution from inception to viral acquisition.</p>
+            </div>
+            <div class="about-box">
+                <h2>The Corporate Advantage</h2>
+                <ul>
+                    <li><i class="fa-solid fa-arrow-right"></i> <strong>Elite Brand Authority:</strong> Luxury International tier asset generation.</li>
+                    <li><i class="fa-solid fa-arrow-right"></i> <strong>Hyper-Scale Conversions:</strong> Turn raw traffic into dedicated brand advocates.</li>
+                    <li><i class="fa-solid fa-arrow-right-long"></i> <strong>Full Autonomous Service:</strong> From pre-production scripts to final data injection.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CORE STRATEGY INTERACTIVE LAYOUT -->
+        <section class="packages-container" id="packages">
+            <div class="section-title">
+                <h2>Industry-Specific Media Blueprints</h2>
+                <p>Select your specialized sector below to unlock strategic custom inclusions, trust-building modules, and execution mapping blueprints.</p>
+            </div>
+
+            <div class="grid">
+                <!-- 1. Doctor & Clinic -->
+                <div class="package-card" onclick="loadDetails('doctor')">
+                    <div class="card-top">
+                        <div class="icon-box"><i class="fa-solid fa-user-doctor"></i></div>
+                        <h3>Doctor & Clinic</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: var(--g-sm);">High-authority medical profiling & compliance-first trust frameworks.</p>
+                    </div>
+                    <div class="card-view-details-btn">Unlock Framework <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+
+                <!-- 2. Medical, Agricultural & Mobile Shoppe -->
+                <div class="package-card" onclick="loadDetails('retail')">
+                    <div class="card-top">
+                        <div class="icon-box"><i class="fa-solid fa-pills"></i></div>
+                        <h3>Medical, Agro & Tech</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: var(--g-sm);">Hyper-local logistics campaigns & product velocity acceleration mapping.</p>
+                    </div>
+                    <div class="card-view-details-btn">Unlock Blueprint <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+
+                <!-- 3. Hotel & Restaurant -->
+                <div class="package-card" onclick="loadDetails('hotel')">
+                    <div class="card-top">
+                        <div class="icon-box"><i class="fa-solid fa-utensils"></i></div>
+                        <h3>Hotel & Restaurant</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: var(--g-sm);">Cinematic model shoots & taste narrative conversion funnels.</p>
+                    </div>
+                    <div class="card-view-details-btn">Unlock Funnel <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+
+                <!-- 4. Furniture & Optical Shop -->
+                <div class="package-card" onclick="loadDetails('furniture')">
+                    <div class="card-top">
+                        <div class="icon-box"><i class="fa-solid fa-couch"></i></div>
+                        <h3>Furniture & Opticals</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: var(--g-sm);">High-end product photography & spatial walkthrough chronicles.</p>
+                    </div>
+                    <div class="card-view-details-btn">Unlock Blueprint <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+
+                <!-- 5. Jewelry Showroom -->
+                <div class="package-card" onclick="loadDetails('jewelry')">
+                    <div class="card-top">
+                        <div class="icon-box"><i class="fa-solid fa-gem"></i></div>
+                        <h3>Jewelry Showroom</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: var(--g-sm);">Luxury micro-cinematography & product aesthetic validation blocks.</p>
+                    </div>
+                    <div class="card-view-details-btn">Unlock System <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+
+                <!-- 6. English Medium School -->
+                <div class="package-card" onclick="loadDetails('school')">
+                    <div class="card-top">
+                        <div class="icon-box"><i class="fa-solid fa-school"></i></div>
+                        <h3>English Medium School</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: var(--g-sm);">Academic milestone validation & premium infrastructure media profiling.</p>
+                    </div>
+                    <div class="card-view-details-btn">Unlock Blueprint <i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DYNAMIC DETAILED PACKAGE VIEW -->
+    <div id="detail-view" class="page-view">
+        <div class="detail-view-container">
+            <div class="back-btn" onclick="showView('home-view')">
+                <i class="fa-solid fa-arrow-left-long"></i> Back to Solutions
+            </div>
+            
+            <div class="detail-glass-card">
+                <div id="dynamic-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo-area">
+                <img src="logo.png" alt="Grow More Logo" class="footer-brand-logo">
+            </div>
+            <p style="color: var(--text-muted); max-width: 420px; font-size: 14px; line-height: 1.618;">Next-Level Marketing, Cinematic Production and Global Brand Architecture Agency.</p>
+            
+            <div class="social-links">
+                <a href="https://www.instagram.com/growmore_adv?igsh=d2R4NDMzc2twbXN3" class="social-icon instagram" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/917798105055" class="social-icon whatsapp" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/company/grow-more-digital-advertising/" class="social-icon linkedin" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Grow More Digital Advertising. All rights reserved.</p>
+            <p>Designed for Impact</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE ENGINE -->
+    <script>
+        const packageData = {
+            doctor: {
+                title: "Doctor & Clinic Trust Framework",
+                icon: "fa-user-doctor",
+                desc: "A compliance-focused, high-authority brand deployment strategy crafted explicitly to build trust, address patient anxieties, and establish unmatched clinical positioning.",
+                howWeHelp: "We bridge the gap between complex medical competence and patient trust by converting technical medical profiles into reassuring digital narratives.",
+                trustBuild: "Through direct face-to-face premium profiling, secure documentation storytelling, and authentic recovered patient outcome tracking modules.",
+                whatWeDo: "Our crew shoots structured script assets natively on iPhone Pro Cinematic Rigs. Post-production is executed via the Adobe Professional Stack (Premiere Pro & After Effects). Advanced 4K Drone Aerial setups are deployed conditionally *only if required* by the project scale.",
+                productionAssets: [
+                    "Cinematography Standards: iPhone Pro 4K Cinematic Rigs & Stabilization systems used natively.",
+                    "Aerial Deployment: 4K Drone Rigs utilized conditionally *only if required* by spatial architecture or institutional scale.",
+                    "Post-Production Suite: Full Adobe Professional Stack workflow (Premiere Pro + After Effects).",
+                    "Scripting Integrity: 100% Humanized Psychology-First Scriptwriting (Strictly Zero Automated AI Text strings)."
+                ],
+                dropdownPlans: [
+                    { val: "Elite Medical Framework (Plan A)", name: "Elite Medical Framework (Plan A)" },
+                    { val: "Core Clinical Deployment (Plan B)", name: "Core Clinical Deployment (Plan B)" },
+                    { val: "Custom Plan", name: "Bespoke Custom Configuration Blueprint" }
+                ],
+                tiers: [
+                    { name: "Elite Medical Framework (Plan A)", items: ["8 High-Retention Scripted Strategic Reels", "8 Custom Branded Medical Informatics Graphics", "2 Advanced Targeting Audience Reel Boost Blocks", "Social Media Handling & Management (In-Built)", "Free Festival Design Matrix Architecture (In-Built)"] },
+                    { name: "Core Clinical Deployment (Plan B)", items: ["4 High-Retention Scripted Strategic Reels", "4 Custom Branded Medical Informatics Graphics", "1 Advanced Targeting Audience Reel Boost Block", "Social Media Handling & Management (In-Built)", "Free Festival Design Matrix Architecture (In-Built)"] }
+                ]
+            },
+            retail: {
+                title: "Medical, Agricultural & Mobile Tech Blueprint",
+                icon: "fa-pills",
+                desc: "A rapid local domination and inventory velocity model configured for retail hubs needing high-impact regional visibility and targeted buyer generation.",
+                howWeHelp: "We showcase product availability width, highlight immediate emergency or finance solutions, and map out your unique regional market advantages.",
+                trustBuild: "By framing your business as the most responsive, fully-stocked modern distributor across your city geography.",
+                whatWeDo: "Our crew shoots structured script assets natively on iPhone Pro Cinematic Rigs. Post-production is executed via the Adobe Professional Stack (Premiere Pro & After Effects). Advanced 4K Drone Aerial setups are deployed conditionally *only if required* by the project scale.",
+                productionAssets: [
+                    "Cinematography Standards: iPhone Pro Ultra-Stable Macro Lens Rigs for product detailing.",
+                    "Aerial Deployment: Commercial 4K Drone assets integrated conditionally *only if required* for major agri-warehouses or multi-floor spaces.",
+                    "Post-Production Suite: Adobe Premiere Pro Speed-Ramping & Custom Sound FX Workflows.",
+                    "Scripting Integrity: 100% Humanized Retail Conversion Anchors (Strictly Zero AI Content strings)."
+                ],
+                dropdownPlans: [
+                    { val: "Core Strategy Framework (Plan B)", name: "Core Strategy Framework (Plan B)" },
+                    { val: "Custom Plan", name: "Bespoke Custom Configuration Blueprint" }
+                ],
+                tiers: [
+                    { name: "Core Strategy Framework (Plan B)", items: ["4 High-Retention Scripted Strategic Reels", "4 Custom Branded Technical Product Graphics", "1 Advanced Targeting Audience Reel Boost Block", "Social Media Handling & Management (In-Built)", "Free Festival Design Matrix Architecture (In-Built)"] }
+                ]
+            },
+            hotel: {
+                title: "Hotel & Restaurant Model Shoot Pipeline",
+                icon: "fa-utensils",
+                desc: "An premium, experience-focused sensory marketing framework pairing elite model casting with mouth-watering cinematography to convert visual views into packed tables.",
+                howWeHelp: "We transform food prep and restaurant atmosphere into an aspiring lifestyle experience using real-time human interaction narrative vectors.",
+                trustBuild: "By highlighting clean kitchen management, premium hospitality standards, and joyful crowd responses simultaneously.",
+                whatWeDo: "We manage complete model casting, draft restaurant scripts, and execute high-frame-rate iPhone Pro shoots. Premium Drone configurations are flown conditionally *only if required* to map out majestic outdoor structural dimensions.",
+                productionAssets: [
+                    "Cinematography Standards: iPhone Pro High Frame-Rate Cinematic Rigs (4K Slow Motion Food Aesthetics).",
+                    "Aerial Deployment: Precision Interior Drone tracking systems integrated conditionally *only if required* for architectural capture.",
+                    "Post-Production Suite: Adobe After Effects Motion Dynamics & Professional Color Grading Stack.",
+                    "Scripting Integrity: 100% Humanized Culinary Storytelling & Lifestyle Conversion Hooks."
+                ],
+                dropdownPlans: [
+                    { val: "Elite Model Shoot Framework (10 Reels)", name: "Elite Model Shoot Framework (10 Reels + 5 Models)" },
+                    { val: "Premium Model Shoot Framework (5 Reels)", name: "Premium Model Shoot Framework (5 Reels + 3 Models)" },
+                    { val: "Standard Model Shoot Framework (3 Reels)", name: "Standard Model Shoot Framework (3 Reels + 2 Models)" },
+                    { val: "Custom Plan", name: "Bespoke Custom Configuration Blueprint" }
+                ],
+                tiers: [
+                    { name: "Elite Model Shoot Framework (10 Reels)", items: ["10 High-Retention Scripted & Edited Cinematic Reels", "Casting Coordination of 5 On-Screen Professional Models", "Complete Organic Platform Page Management Tracks (In-Built)", "Optional Targeted Performance Reach Optimization Boost Arrangements"] },
+                    { name: "Premium Model Shoot Framework (5 Reels)", items: ["5 High-Retention Scripted & Edited Cinematic Reels", "Casting Coordination of 3 On-Screen Professional Models", "Complete Organic Platform Page Management Tracks (In-Built)", "Optional Targeted Performance Reach Optimization Boost Arrangements"] },
+                    { name: "Standard Model Shoot Framework (3 Reels)", items: ["3 High-Retention Scripted & Edited Cinematic Reels", "Casting Coordination of 2 On-Screen Professional Models", "Complete Organic Platform Page Management Tracks (In-Built)", "Optional Targeted Performance Reach Optimization Boost Arrangements"] }
+                ]
+            },
+            furniture: {
+                title: "Furniture & Optical Spatial Walkthrough Blueprint",
+                icon: "fa-couch",
+                desc: "A luxury showroom conversion model engineered specifically to highlight fine material details, craftsmanship values, and premium structural design features.",
+                howWeHelp: "We make your physical showroom look like an elite lifestyle space, driving high-ticket buyers directly to your sales desk.",
+                trustBuild: "By showing behind-the-scenes material durability tests, fine finish details, and true product texture reveals.",
+                whatWeDo: "Our studio team sets up professional tracking rigs natively on iPhone Pro setups. Heavy production equipment or interior Drones are applied conditionally *only if required* based on showroom size scale.",
+                productionAssets: [
+                    "Cinematography Standards: iPhone Pro Gimbal-Stabilized Spatial Tracking Rigs.",
+                    "Aerial Deployment: Intricate Fly-Through Drone assets integrated conditionally *only if required* for massive layout captures.",
+                    "Post-Production Suite: Adobe Premiere Pro High-Contrast Grading & Texture Realism Workflows.",
+                    "Scripting Integrity: 100% Humanized Craftsmanship Dialogue Scripts (Zero Automated AI Phrases)."
+                ],
+                dropdownPlans: [
+                    { val: "Elite Showroom Framework (Plan A)", name: "Elite Showroom Framework (Plan A)" },
+                    { val: "Custom Plan", name: "Bespoke Custom Configuration Blueprint" }
+                ],
+                tiers: [
+                    { name: "Elite Showroom Framework (Plan A)", items: ["2 Proscripted Professional Model Narrative Reels", "5 High-End 4K Spatial Cinematic Walkthrough Reels", "5 Premium Geometric Value Proposition Graphics", "10 Ultra-Sharp Studio Product Photography Assets", "Social Media Handling & Strategy Management (In-Built)", "1 High-Yield Precision Targeted Performance Reach Boost", "Highlighted Festival Design Custom Assets Free (In-Built)"] }
+                ]
+            },
+            jewelry: {
+                title: "Jewelry Showroom Luxury Asset System",
+                icon: "fa-gem",
+                desc: "An elite, high-contrast micro-cinematography framework designed to make diamond and gold collections look incredibly premium and valuable.",
+                howWeHelp: "We capture the perfect light reflections, gold purity details, and luxury lifestyle status of your jewelry assets.",
+                trustBuild: "By framing your showroom as the ultimate regional benchmark for luxury, heritage, and certified authentic collections.",
+                whatWeDo: "We provide macro setups natively on iPhone Pro Cinematic systems, record emotional voiceover scripts, and manage continuous profile optimization. Specialized camera setups or Drones are applied conditionally *only if required*.",
+                productionAssets: [
+                    "Cinematography Standards: iPhone Pro Studio Macro Lens Gear for Refraction Detailing.",
+                    "Aerial Deployment: Specialized Micro-Drone runs deployed conditionally *only if required* for wide showroom profiling.",
+                    "Post-Production Suite: Full Adobe Stack Seamless Masking & Pristine Color Grading Loops.",
+                    "Scripting Integrity: 100% Humanized Emotional Heritage & Elegance Arcs (Strictly No Bot Scripts)."
+                ],
+                dropdownPlans: [
+                    { val: "Luxury Showroom Plan", name: "Luxury Showroom Asset Deployment System" },
+                    { val: "Custom Plan", name: "Bespoke Custom Configuration Blueprint" }
+                ],
+                tiers: [
+                    { name: "Luxury Showroom Asset Deployment System", items: ["3 Premium Scripted, Edited & Voiceover Cast Narrative Reels", "5 High-Definition Micro Lens Cinematic Collection Reels", "15 Pro Lighting Studio Product Photography Blocks", "10 High-Contrast Premium Identity Social Graphics", "Social Media Handling & Architecture Coordination (In-Built)", "1 High-Targeted Algorithm Performance Reel Boost"] }
+                ]
+            },
+            school: {
+                title: "English Medium School Acquisition Engine",
+                icon: "fa-school",
+                desc: "A premium institutional communication pipeline designed to showcase advanced academic facilities, highlight achievements, and maximize student enrolment pipelines.",
+                howWeHelp: "We present your campus infrastructure, modern classrooms, and academic success stories in a way that truly connects with parents.",
+                trustBuild: "By showcasing real student campus life, clear parent endorsements, and verified board results transparently.",
+                whatWeDo: "We build parent interaction scripts, execute professional voiceovers, and handle target-focused ad tracks natively on iPhone Pro set configurations. Professional 4K Aerial Drones are deployed conditionally *only if required* by the campus scale requirement.",
+                productionAssets: [
+                    "Cinematography Standards: iPhone Pro Active-Track Action Rigs for Campus Activity profiling.",
+                    "Aerial Deployment: Professional 4K Drone Infrastructure Profiling integrated conditionally *only if required* by campus layout scale.",
+                    "Post-Production Suite: Adobe Premiere Pro High-Energy Editing & Custom Soundscapes.",
+                    "Scripting Integrity: 100% Humanized Pedagogical & Growth-Oriented Scripts (Strictly Zero AI Text)."
+                ],
+                dropdownPlans: [
+                    { val: "Comprehensive Institutional Domination (Plan A)", name: "Comprehensive Institutional Domination (Plan A)" },
+                    { val: "Essential Institutional Infrastructure (Plan B)", name: "Essential Institutional Infrastructure (Plan B)" },
+                    { val: "Custom Plan", name: "Bespoke Custom Configuration Blueprint" }
+                ],
+                tiers: [
+                    { name: "Comprehensive Institutional Domination (Plan A)", items: ["5 Scripted, Voiceover-Backed Campus Cinematic Reels", "5 Highlighted Campus Event & Activity Media Reels", "10 Premium Informative Brand Identity Graphics", "Social Media Handling & Core Maintenance (In-Built)", "1 High-Inflow Target Performance Enrolment Boost Block", "Free School Clean Festival Design Layout Assets (In-Built)"] },
+                    { name: "Essential Institutional Infrastructure (Plan B)", items: ["2 Scripted, Voiceover-Backed Campus Cinematic Reels", "5 Highlighted Campus Event & Activity Media Reels", "10 Premium Informative Brand Identity Graphics", "Social Media Handling & Core Maintenance (In-Built)", "1 High-Inflow Target Performance Enrolment Boost Block", "Free School Clean Festival Design Layout Assets (In-Built)"] }
+                ]
+            }
+        };
+
+        function showView(viewId) {
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active-view');
+            });
+            const targetView = document.getElementById(viewId);
+            targetView.classList.add('active-view');
+            window.scrollTo(0, 0);
+        }
+
+        function loadDetails(key) {
+            const data = packageData[key];
+            if (!data) return;
+
+            let tiersHtml = "";
+            data.tiers.forEach(tier => {
+                let itemsHtml = "";
+                tier.items.forEach(item => {
+                    itemsHtml += `<li><i class="fa-solid fa-minus"></i> <span>${item}</span></li>`;
+                });
+                tiersHtml += `
+                    <div class="plan-tier-card">
+                        <h5>${tier.name}</h5>
+                        <ul class="detailed-strategy-list">
+                            ${itemsHtml}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            let assetsHtml = "";
+            data.productionAssets.forEach(asset => {
+                assetsHtml += `<li><i class="fa-solid fa-layer-group"></i> <span>${asset}</span></li>`;
+            });
+
+            let selectOptionsHtml = "";
+            data.dropdownPlans.forEach(plan => {
+                selectOptionsHtml += `<option value="${plan.val}" data-name="${plan.name}">${plan.name}</option>`;
+            });
+
+            const contentHtml = `
+                <div class="detail-header">
+                    <div class="icon-box"><i class="fa-solid ${data.icon}"></i></div>
+                    <h2>${data.title}</h2>
+                </div>
+                <p class="detail-desc">${data.desc}</p>
+                
+                <div class="value-pillars-grid">
+                    <div class="pillar-box">
+                        <h4><i class="fa-solid fa-wand-magic-sparkles"></i> How We Help</h4>
+                        <p>${data.howWeHelp}</p>
+                    </div>
+                    <div class="pillar-box">
+                        <h4><i class="fa-solid fa-shield-halved"></i> Building Trust</h4>
+                        <p>${data.trustBuild}</p>
+                    </div>
+                    <div class="pillar-box">
+                        <h4><i class="fa-solid fa-clapperboard"></i> Our Execution</h4>
+                        <p>${data.whatWeDo}</p>
+                    </div>
+                </div>
+
+                <div class="detail-section-title">Production Assets & Standards</div>
+                <div class="plan-tier-card" style="margin-top: var(--g-sm); margin-bottom: var(--g-xl);">
+                    <ul class="detailed-strategy-list">
+                        ${assetsHtml}
+                    </ul>
+                </div>
+
+                <div class="detail-section-title">Standard Execution Scope</div>
+                <div class="plan-box-container" style="margin-top: var(--g-sm);">
+                    ${tiersHtml}
+                </div>
+                
+                <!-- DYNAMIC CONFIGURATOR WORKSPACE MODULE -->
+                <div class="detail-section-title" style="margin-top: var(--g-lg);">Select Framework or Request Custom Setup</div>
+                <div class="configurator-area">
+                    <div class="config-group">
+                        <label class="config-label">Choose Strategy Framework Template</label>
+                        <select id="selected-package-tier" class="config-select" onchange="toggleCustomWorkspace()">
+                            ${selectOptionsHtml}
+                        </select>
+                    </div>
+                    
+                    <!-- HIDE/SHOW WORKSPACE BASE -->
+                    <div id="custom-setup-workspace" class="custom-setup-fields">
+                        <div class="custom-quantity-grid">
+                            <div class="config-group">
+                                <label class="config-label">Custom Reels Count</label>
+                                <input type="number" id="reels-count" class="config-input" placeholder="e.g. 5, 10, 15" min="0">
+                            </div>
+                            <div class="config-group">
+                                <label class="config-label">Custom Graphics Count</label>
+                                <input type="number" id="graphics-count" class="config-input" placeholder="e.g. 5, 15, 20" min="0">
+                            </div>
+                        </div>
+
+                        <!-- NEW: DYNAMIC SHOOT TYPE CONFIGURATOR -->
+                        <div class="config-group">
+                            <label class="config-label">Select Core Cinematic Shoot Type</label>
+                            <select id="selected-shoot-type" class="config-select">
+                                <option value="Cinematic Shoot Only">Cinematic Shoot Only</option>
+                                <option value="Scripted Shoot (Normal)">Scripted Shoot (Normal)</option>
+                                <option value="Actor/Model Based Scripted Shoot">Actor/Model Based Scripted Shoot</option>
+                                <option value="Cinematic + Scripted Combo">Cinematic + Scripted Combo</option>
+                            </select>
+                        </div>
+                        
+                        <!-- PREMIUM CHECKLIST & SPECIFIC HUMANIZED SCRIPTING CHECKBOX -->
+                        <div class="config-group">
+                            <label class="config-label">Select Core Custom Sub-Services Required</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item"><input type="checkbox" id="chk-scripting" checked> Specific Humanized Scripting</label>
+                                <label class="checkbox-item"><input type="checkbox" id="chk-handling" checked> Social Media Handling</label>
+                                <label class="checkbox-item"><input type="checkbox" id="chk-boost" checked> Targeted Reel Boost</label>
+                                <label class="checkbox-item"><input type="checkbox" id="chk-festivals" checked> Free Festival Designs</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label class="config-label">Additional Scope / Business Requests</label>
+                        <textarea id="custom-notes" class="config-textarea" rows="3" placeholder="Enter special requests, target location notes, etc..."></textarea>
+                    </div>
+                    <button class="deploy-button" onclick="sendCustomQuote('${data.title}')">Deploy Strategy & Get Quote Blueprint</button>
+                </div>
+            `;
+
+            document.getElementById('dynamic-content').innerHTML = contentHtml;
+            showView('detail-view');
+        }
+
+        function toggleCustomWorkspace() {
+            const selectEl = document.getElementById('selected-package-tier');
+            const customWorkspace = document.getElementById('custom-setup-workspace');
+            if (selectEl.value === "Custom Plan") {
+                customWorkspace.style.display = "flex";
+            } else {
+                customWorkspace.style.display = "none";
+            }
+        }
+
+        function sendCustomQuote(title) {
+            const selectEl = document.getElementById('selected-package-tier');
+            const selectedOption = selectEl.options[selectEl.selectedIndex];
+            
+            const planValue = selectEl.value; 
+            const planTextName = selectedOption.getAttribute('data-name');
+            
+            let messageBody = "";
+            const notes = document.getElementById('custom-notes').value || 'None';
+
+            if (planValue === "Custom Plan") {
+                const reelsInput = document.getElementById('reels-count').value || '0';
+                const graphicsInput = document.getElementById('graphics-count').value || '0';
+                
+                // Get selected shoot type dynamically
+                const shootType = document.getElementById('selected-shoot-type').value;
+
+                // Handle humanized scripting separately as requested
+                const humanScriptRequired = document.getElementById('chk-scripting').checked ? "Yes (Bespoke Human Psychology-First Content)" : "No";
+                
+                let customServices = [];
+                if (document.getElementById('chk-handling').checked) customServices.push("Social Media Handling");
+                if (document.getElementById('chk-boost').checked) customServices.push("Targeted Reel Boost");
+                if (document.getElementById('chk-festivals').checked) customServices.push("Free Festival Designs");
+                
+                const servicesText = customServices.length > 0 ? customServices.join(", ") : "None Selected";
+
+                messageBody = `• Selected Action: CLIENT CONFIGURING CUSTOM PACKAGE\n• Chosen Plan Framework: Bespoke Custom Configuration Blueprint\n• Configured Reels Quantity: ${reelsInput} Reels\n• Configured Graphics Quantity: ${graphicsInput} Graphics\n• Selected Shoot Type: ${shootType}\n• Humanized Scripting Required: ${humanScriptRequired}\n• Selected Sub-Services Checklist: ${servicesText}`;
+            } else {
+                messageBody = `• Selected Action: CLIENT SELECTED FIXED PLAN\n• Chosen Plan Framework: ${planTextName}\n• Included Core Deliverables: Social Media Handling, Targeted Reel Boost & Free Festival Designs (All Strategy Inclusions Packaged As-It-Is)`;
+            }
+            
+            const rawMessage = `Hi Grow More,\n\n*I want to request a Strategic Quote Blueprint*:\n\n• Business Sector: ${title}\n${messageBody}\n• Additional Business Scope Notes: ${notes}\n\nPlease process this configuration and share the custom budget matrix.`;
+            
+            const encodedMessage = encodeURIComponent(rawMessage);
+            window.open('https://wa.me/917798105055?text=' + encodedMessage, '_blank');
+        }
+    </script>
+
+</body>
+</html>
