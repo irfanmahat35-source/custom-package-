@@ -559,7 +559,7 @@
             box-shadow: 0 15px 40px rgba(255, 255, 255, 0.35);
         }
 
-        /* --- PREMIUM HIGH-VISIBILITY FOOTER MODULE --- */
+        /* --- PREMIUM ULTRA-MINIMALIST FOOTER MODULE --- */
         footer {
             position: relative;
             z-index: 2;
@@ -640,7 +640,7 @@
             h1 { font-size: 32px; letter-spacing: -1px; }
             .hero p { font-size: 16px; }
             .header-logo { width: 95px; }
-            nav { display: none; } /* Strictly clean mobile top bar view */
+            nav { display: none; } /* Mobile Top Bar Geometry */
             .badge { font-size: 9px; padding: 6px 12px; }
             .about-box h2 { font-size: 22px; }
             .about-box p, .about-box ul li { font-size: 14px; }
@@ -659,7 +659,6 @@
 </head>
 <body>
 
-    <!-- REAL GLASS INTERACTION GLOWS -->
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
     <div class="ambient-glow-3"></div>
@@ -678,14 +677,12 @@
 
     <!-- MAIN HOME LANDING VIEW -->
     <div id="home-view" class="page-view active-view">
-        <!-- PROPORTIONAL HERO DISPLAY -->
         <section class="hero" id="home">
             <div class="badge">Next-Gen Digital Media House</div>
             <h1>We Transform Local Businesses<br>Into Global Brands.</h1>
             <p>Engineered for massive corporate expansion. We weaponize high-end cinematic production, advanced social media infrastructure, and target-focused advertising campaigns to instantly scale your market dominance.</p>
         </section>
 
-        <!-- SYMMETRIC VALUES LAYER -->
         <section class="about-section" id="about">
             <div class="about-box">
                 <h2>What is Grow More?</h2>
@@ -785,7 +782,7 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- PREMIUM HIGH-VISIBILITY FOOTER MODULE -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo-area">
@@ -805,7 +802,7 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE SCRIPT ENGINE -->
+    <!-- INTERACTIVE ENGINE -->
     <script>
         const packageData = {
             doctor: {
@@ -869,12 +866,18 @@
                     { val: "Elite Model Shoot Framework (10 Reels)", name: "Elite Model Shoot Framework (10 Reels + 5 Models)" },
                     { val: "Premium Model Shoot Framework (5 Reels)", name: "Premium Model Shoot Framework (5 Reels + 3 Models)" },
                     { val: "Standard Model Shoot Framework (3 Reels)", name: "Standard Model Shoot Framework (3 Reels + 2 Models)" },
+                    { val: "Basic Plan", name: "Basic Plan (10 Reels + 10 Designs)" },
+                    { val: "Standard Plan", name: "Standard Plan (15 Reels + 15 Designs)" },
+                    { val: "Premium Plan", name: "Premium Plan (20 Reels + 20 Designs)" },
                     { val: "Custom Plan", name: "Bespoke Custom Configuration Blueprint" }
                 ],
                 tiers: [
                     { name: "Elite Model Shoot Framework (10 Reels)", items: ["10 High-Retention Scripted & Edited Cinematic Reels", "Casting Coordination of 5 On-Screen Professional Models", "Complete Organic Platform Page Management Tracks (In-Built)", "Optional Targeted Performance Reach Optimization Boost Arrangements"] },
                     { name: "Premium Model Shoot Framework (5 Reels)", items: ["5 High-Retention Scripted & Edited Cinematic Reels", "Casting Coordination of 3 On-Screen Professional Models", "Complete Organic Platform Page Management Tracks (In-Built)", "Optional Targeted Performance Reach Optimization Boost Arrangements"] },
-                    { name: "Standard Model Shoot Framework (3 Reels)", items: ["3 High-Retention Scripted & Edited Cinematic Reels", "Casting Coordination of 2 On-Screen Professional Models", "Complete Organic Platform Page Management Tracks (In-Built)", "Optional Targeted Performance Reach Optimization Boost Arrangements"] }
+                    { name: "Standard Model Shoot Framework (3 Reels)", items: ["3 High-Retention Scripted & Edited Cinematic Reels", "Casting Coordination of 2 On-Screen Professional Models", "Complete Organic Platform Page Management Tracks (In-Built)", "Optional Targeted Performance Reach Optimization Boost Arrangements"] },
+                    { name: "Basic Plan (Cinematic Plan)", items: ["10 Custom Scripted Cinematic Reels", "10 Brand-Focused Strategic Creative Designs", "Premium Showroom & Menu Product Photography (10 Assets)", "Full Social Media Profile Handling & Daily Action Engagement Vents", "Bespoke Logo Design / Vector Animation Support Block", "Monthly 1 Performance Reel Boost Deployed for 3 Days Locally", "Highlighted Event & Festival Matrix Custom Layout Designs Free"] },
+                    { name: "Standard Plan(Cinematic Plan)", items: ["15 Custom Scripted Cinematic Reels", "15 Brand-Focused Strategic Creative Designs", "Premium Showroom & Menu Product Photography (15 Assets)", "Full Social Media Profile Handling & Daily Action Engagement Vents", "Bespoke Logo Design / Vector Animation Support Block", "Monthly 2 Performance Reel Boosts Deployed for 6 Days Locally", "Highlighted Event & Festival Matrix Custom Layout Designs Free"] },
+                    { name: "Premium Plan (Cinematic Plan)", items: ["20 Custom Scripted Cinematic Reels", "20 Brand-Focused Strategic Creative Designs", "Premium Showroom & Menu Product Photography (20 Assets)", "Full Social Media Profile Handling & Daily Action Engagement Vents", "Bespoke Logo Design / Vector Animation Support Block", "Monthly 3 Performance Reel Boosts Deployed for 9 Days Locally", "Highlighted Event & Festival Matrix Custom Layout Designs Free"] }
                 ]
             },
             furniture: {
@@ -980,7 +983,7 @@
 
             let selectOptionsHtml = "";
             data.dropdownPlans.forEach(plan => {
-                selectOptionsHtml += `<option value="${plan.val}" data-name="${plan.name}">${plan.name}</option>`;
+                selectOptionsHtml += `<option value="${plan.val}" data-name="${plan.val}">${plan.name}</option>`;
             });
 
             const contentHtml = `
